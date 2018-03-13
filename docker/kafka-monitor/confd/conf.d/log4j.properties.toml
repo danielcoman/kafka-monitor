@@ -1,0 +1,3 @@
+[template]
+src = "log4j.properties.tmpl"
+dest = "/kafka-monitor/config/log4j.properties"

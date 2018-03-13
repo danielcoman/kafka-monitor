@@ -1,0 +1,3 @@
+[template]
+src = "kafka-monitor.properties.tmpl"
+dest = "/kafka-monitor/config/kafka-monitor.properties"

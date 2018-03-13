@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  kafka-monitor:
+    
+    build:
+      context: ./kafka-monitor
+      dockerfile: ./Dockerfile
+    image: danielcoman/kafka-monitor:latest
