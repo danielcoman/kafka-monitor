@@ -1,3 +1,0 @@
-[template]
-src = "multi-cluster-monitor.properties.tmpl"
-dest = "/kafka-monitor/config/multi-cluster-monitor.properties"

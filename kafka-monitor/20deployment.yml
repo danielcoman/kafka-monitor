@@ -20,25 +20,25 @@ spec:
         image: danielcoman/kafka-monitor:latest
         imagePullPolicy: Always
         env:
-        - name: TEST_TOPIC
-          value: "kafka-monitor-1"
-        - name: KAFKA_PRODUCE_ZK
-          value: "zookeeper.kafka-source.svc.cluster.local:2181"
-        - name: KAFKA_PRODUCE_BROKER
-          value: "broker.kafka-source.svc.cluster.local:9092"
-        - name: KAFKA_CONSUME_ZK
-          value: "zookeeper.kafka-destination.svc.cluster.local:2181"
-        - name: KAFKA_CONSUME_BROKER
-          value: "broker.kafka-destination.svc.cluster.local:9092"
-        - name: REPORTER_CLASS
-          value: "com.linkedin.kmf.services.GraphiteMetricsReporterService"
-        # - name: REPORTER_CLASS
-        #   value: "com.linkedin.kmf.services.DefaultMetricsReporterService"
-        - name: REPORTER_GRAPHITE_HOST
-          value: "prometheus-graphite-exporter.monitoring.svc.cluster.local"
-        - name: REPORTER_GRAPHITE_PORT
-          value: "9109"
-        - name: REPORTER_GRAPHITE_PREFIX
-          value: "km"
         - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
           value: "km"
+        volumeMounts:
+          - name: kafka-monitor-volume
+            mountPath: /kafka-monitor/config/kafka-monitor.properties
+            subPath: kafka-monitor.properties
+          - name: log4j-volume
+            mountPath: /kafka-monitor/config/log4j.properties
+            subPath: log4j.properties
+          - name: multi-cluster-monitor-volume
+            mountPath: /kafka-monitor/config/multi-cluster-monitor.properties
+            subPath: multi-cluster-monitor.properties
+      volumes:
+        - name: kafka-monitor-volume
+          configMap:
+            name: kafka-monitor-volume
+        - name: log4j-volume
+          configMap:
+            name: log4j-volume
+        - name: multi-cluster-monitor-volume
+          configMap:
+            name: multi-cluster-monitor-volume
