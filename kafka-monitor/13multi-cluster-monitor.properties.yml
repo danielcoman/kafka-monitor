@@ -25,7 +25,8 @@ data:
           "bootstrap.servers": "broker.kafka-source.svc.cluster.local:9092",
           "produce.record.delay.ms": 1,
           "produce.producer.props": {
-            "client.id": "kafka-monitor-client-id"
+            "client.id": "kafka-monitor-client-id",
+            "compression.codec": "lz4"
           }
         },
 
@@ -46,6 +47,9 @@ data:
             "topic-management.partitionsToBrokersRatio" : 2.0,
             "topic-management.rebalance.interval.ms" : 600000,
             "topic-management.topicFactory.props": {
+            },
+            "topic-management.topic.props": {
+              "retention.ms": "3600000"
             }
           },
 
@@ -56,6 +60,9 @@ data:
             "topic-management.partitionsToBrokersRatio" : 2.0,
             "topic-management.rebalance.interval.ms" : 600000,
             "topic-management.topicFactory.props": {
+            },
+            "topic-management.topic.props": {
+              "retention.ms": "3600000"
             }
           }
         }
